@@ -1,0 +1,4 @@
+# dbt/requirements.txt
+# Adaptador nativo para Google BigQuery (Instala dbt-core automáticamente)
+
+dbt-bigquery>=1.8.0

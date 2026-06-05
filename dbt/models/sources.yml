@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: gcp_lakehouse
+    database: mobile-finapp-lakehouse-36577
+    schema: finapp_gold_layer
+    tables:
+      - name: ext_silver_telemetry
+        description: "Tabla externa que lee los archivos Parquet de la capa Plata en GCS"

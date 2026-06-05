@@ -1,0 +1,26 @@
+# Usamos Python 3.11 como base
+FROM python:3.11-slim
+
+# Instalamos Java (Requisito indispensable para Spark) y wget para descargar conectores
+RUN apt-get update && \
+    apt-get install -y default-jre wget && \
+    rm -rf /var/lib/apt/lists/*
+
+# Establecemos la variable de entorno de Java
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+
+WORKDIR /app
+
+# Instalamos PySpark (versión 3.5.0, la más estable actual)
+RUN pip install --no-cache-dir pyspark==3.5.0
+
+# Descargamos el conector oficial de Google Cloud Storage para Hadoop 3
+# Este es el "puente" que permite que Spark entienda las rutas gs://
+RUN mkdir -p /opt/spark/jars && \
+    wget -qO /opt/spark/jars/gcs-connector-hadoop3-latest.jar https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-hadoop3-latest.jar
+
+# Copiamos el script de transformación
+COPY bronze_to_silver.py .
+
+# Ejecutamos el script
+CMD ["python", "bronze_to_silver.py"]

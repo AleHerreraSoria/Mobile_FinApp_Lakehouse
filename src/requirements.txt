@@ -1,0 +1,6 @@
+# src/requirements.txt
+# Dependencias para Ingesta y Transformación
+
+faker==25.2.0
+google-cloud-storage==2.16.0
+pyspark==3.5.1

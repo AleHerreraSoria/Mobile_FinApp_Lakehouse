@@ -1,0 +1,4 @@
+# airflow/requirements.txt
+# Proveedores adicionales para el DAG de orquestación
+
+apache-airflow-providers-docker==3.10.0

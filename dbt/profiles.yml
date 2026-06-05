@@ -1,0 +1,11 @@
+mobile_finapp_lakehouse:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: mobile-finapp-lakehouse-36577
+      dataset: finapp_gold_layer
+      threads: 4
+      keyfile: ../keys/gcp-key.json
+      location: us-east1
